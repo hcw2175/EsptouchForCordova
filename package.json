@@ -1,9 +1,9 @@
 {
-  "name": "EsptouchForCordova",
-  "version": "1.0.0",
+  "name": "cordova-plugin-smartesptouch",
+  "version": "0.0.2",
   "description": "Esptouch For Cordova",
   "cordova": {
-    "id": "com.huchiwei.cordova.esptouch",
+    "id": "cordova-plugin-smartesptouch",
     "platforms": [
       "ios",
       "android"
