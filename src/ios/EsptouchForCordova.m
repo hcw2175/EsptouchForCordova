@@ -1,15 +1,15 @@
-/********* cordova-esptouch.m Cordova Plugin Implementation *******/
+/********* EsptouchForCordova.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
 
-@interface cordova-esptouch : CDVPlugin {
+@interface EsptouchForCordova : CDVPlugin {
   // Member variables go here.
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
 @end
 
-@implementation cordova-esptouch
+@implementation EsptouchForCordova
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
 {

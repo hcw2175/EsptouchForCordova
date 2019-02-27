@@ -1,26 +1,48 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.huchiwei.cordova.esptouch" version="0.0.1" 
-    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordova-esptouch</name>
-    <js-module name="cordova-esptouch" src="www/cordova-esptouch.js">
-        <clobbers target="cordova.plugins.cordova-esptouch" />
+<plugin id="com.huchiwei.cordova.esptouch" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>EsptouchForCordova</name>
+
+    <js-module name="EsptouchForCordova" src="www/EsptouchForCordova.js">
+        <clobbers target="cordova.plugins.EsptouchForCordova"/>
     </js-module>
-    <platform name="android">
-        <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="cordova-esptouch">
-                <param name="android-package" value="com.huchiwei.cordova.esptouch.cordova-esptouch" />
-            </feature>
-        </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml" />
-        <source-file src="src/android/cordova-esptouch.java" target-dir="src/com/huchiwei/cordova/esptouch/cordova-esptouch" />
-    </platform>
+
+    <!-- IOS配置 -->
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
-            <feature name="cordova-esptouch">
-                <param name="ios-package" value="cordova-esptouch" />
+            <feature name="EsptouchForCordova">
+                <param name="ios-package" value="EsptouchForCordova"/>
             </feature>
         </config-file>
-        <source-file src="src/ios/cordova-esptouch.m" />
+        <source-file src="src/ios/EsptouchForCordova.m"/>
+    </platform>
+
+    <!-- Android配置 -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="EsptouchForCordova">
+                <param name="android-package" value="com.huchiwei.cordova.esptouch"/>
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml"/>
+
+        <!-- 权限配置 -->
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+        </config-file>
+
+        <!-- 第三方库引入-->
+        <source-file src="src/android/android/lib/esptouch_v0.3.7.jar" target-dir="libs"/>
+
+        <!-- Java 类定义-->
+        <source-file src="src/android/ESPTouchTaskResult.java" target-dir="src/com/huchiwei/cordova/esptouch" />
+        <source-file src="src/android/ESPTouchTaskCallback.java" target-dir="src/com/huchiwei/cordova/esptouch" />
+        <source-file src="src/android/ESPTouchTask.java" target-dir="src/com/huchiwei/cordova/esptouch" />
+
+        <source-file src="src/android/EsptouchForCordova.java" target-dir="src/com/huchiwei/cordova/esptouch"/>
     </platform>
 </plugin>
