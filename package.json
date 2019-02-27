@@ -1,0 +1,28 @@
+{
+  "name": "EsptouchForCordova",
+  "version": "1.0.0",
+  "description": "Esptouch For Cordova",
+  "cordova": {
+    "id": "com.huchiwei.cordova.esptouch",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcw2175/EsptouchForCordova.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "esptouch"
+  ],
+  "author": "hcw2175",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hcw2175/EsptouchForCordova/issues"
+  },
+  "homepage": "https://github.com/hcw2175/EsptouchForCordova#readme"
+}
