@@ -4,7 +4,7 @@
  *
  * Created on 2019-02-27
  */
-package com.huchiwei.cordova.esptouch.esptouch;
+package org.apache.cordova.esptouch;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -14,9 +14,6 @@ import com.espressif.iot.esptouch.EsptouchTask;
 import com.espressif.iot.esptouch.IEsptouchListener;
 import com.espressif.iot.esptouch.IEsptouchResult;
 import com.espressif.iot.esptouch.IEsptouchTask;
-
-import com.huchiwei.cordova.esptouch.ESPTouchTaskResult;
-import com.huchiwei.cordova.esptouch.ESPTouchTaskCallback;
 
 /**
  * ESPTouch异步配网任务

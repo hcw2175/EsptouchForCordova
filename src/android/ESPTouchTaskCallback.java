@@ -4,7 +4,7 @@
  *
  * Created on 2019-02-27
  */
-package com.huchiwei.cordova.esptouch.esptouch;
+package org.apache.cordova.esptouch;
 
 /**
  * ESPTouch配网任务回调接口

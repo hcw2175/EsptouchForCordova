@@ -4,7 +4,7 @@
  *
  * Created on 2019-02-27
  */
-package com.huchiwei.cordova.esptouch;
+package org.apache.cordova.esptouch;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -15,10 +15,6 @@ import org.json.JSONObject;
 
 import com.espressif.iot.esptouch.util.ByteUtil;
 import com.espressif.iot.esptouch.util.EspNetUtil;
-
-import com.huchiwei.cordova.esptouch.ESPTouchTaskResult;
-import com.huchiwei.cordova.esptouch.ESPTouchTask;
-import com.huchiwei.cordova.esptouch.ESPTouchTaskCallback;
 
 /**
  * ESPTouch配网Android调用入口
@@ -38,7 +34,7 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
         if (action.equals("start")) {
             this.start(args, callbackContext);
         } else if (action.equals("stop")) {
-            this.stop();
+            this.stop(callbackContext);
         }
         return false;
     }
@@ -47,9 +43,9 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
     public void handlerESPTouchTaskResult(ESPThouchTaskResult result) {
         PluginResult pluginResult = null;
         if (result.isSuccess()) {
-            pluginResult = new PluginResult(PluginResult.Status.OK, "{'deviceMac': "+ result.getDeviceBssid() +", 'deviceIp': "+ result.getDeviceIp() +"}")
+            pluginResult = new PluginResult(PluginResult.Status.OK, "{'deviceMac': " + result.getDeviceBssid() + ", 'deviceIp': " + result.getDeviceIp() + "}");
         } else {
-            pluginResult = new PluginResult(PluginResult.Status.ERROR, "{'errMsg': "+ result.getErrMsg() +"}")
+            pluginResult = new PluginResult(PluginResult.Status.ERROR, "{'errMsg': " + result.getErrMsg() + "}");
         }
         pluginResult.setKeepCallback(true); // keep callback after this call
         this.mCallbackContext.sendPluginResult(result);
@@ -61,9 +57,9 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
      * @param args 前端传入参数列表
      */
     private void start(JSONArray args) {
-        byte[] wifiName = ByteUtil.getBytesByString(args[0]);
-        byte[] wifiPassword = ByteUtil.getBytesByString(args[1]);
-        byte[] wifiMac = EspNetUtil.parseBssid2bytes(args[2]);
+        byte[] wifiName = ByteUtil.getBytesByString(args.getString(0));
+        byte[] wifiPassword = ByteUtil.getBytesByString(args.getString(1));
+        byte[] wifiMac = EspNetUtil.parseBssid2bytes(args.getString(2));
         byte[] deviceCount = new String("1").getBytes();
         byte[] broadcast = new String("1").getBytes();
 
@@ -71,8 +67,8 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
         if(mEspTouchTask != null) {
             mEspTouchTask.cancelTask();
         }
-        mEspTouchTask = new ESPTouchTask(getContext(), this);
-        mEspTouchTask.execute(ssid, bssid, password, deviceCount, broadcast);
+        mEspTouchTask = new ESPTouchTask(this.cordova.getContext(), this);
+        mEspTouchTask.execute(wifiName, wifiMac, wifiPassword, deviceCount, broadcast);
     }
 
     /**

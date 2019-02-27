@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-smartesptouch" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-smartesptouch" version="0.0.3" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>EsptouchForCordova</name>
 
@@ -21,7 +21,8 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="EsptouchForCordova">
-                <param name="android-package" value="com.huchiwei.cordova.esptouch"/>
+                <param name="android-package" value="org.apache.cordova.esptouch.EsptouchForCordova"/>
+                 <param name="onload" value="true" />
             </feature>
         </config-file>
 
@@ -36,13 +37,13 @@
         </config-file>
 
         <!-- 第三方库引入-->
-        <source-file src="src/android/lib/esptouch_v0.3.7.jar" target-dir="libs"/>
+        <lib-file src="src/android/lib/esptouch_v0.3.7.jar"/>
 
         <!-- Java 类定义-->
-        <source-file src="src/android/ESPTouchTaskResult.java" target-dir="src/com/huchiwei/cordova/esptouch" />
-        <source-file src="src/android/ESPTouchTaskCallback.java" target-dir="src/com/huchiwei/cordova/esptouch" />
-        <source-file src="src/android/ESPTouchTask.java" target-dir="src/com/huchiwei/cordova/esptouch" />
+        <source-file src="src/android/ESPTouchTaskResult.java" target-dir="src/org/apache/cordova/esptouch" />
+        <source-file src="src/android/ESPTouchTaskCallback.java" target-dir="src/org/apache/cordova/esptouch" />
+        <source-file src="src/android/ESPTouchTask.java" target-dir="src/org/apache/cordova/esptouch" />
 
-        <source-file src="src/android/EsptouchForCordova.java" target-dir="src/com/huchiwei/cordova/esptouch"/>
+        <source-file src="src/android/EsptouchForCordova.java" target-dir="src/org/apache/cordova/esptouch"/>
     </platform>
 </plugin>

@@ -4,7 +4,7 @@
  *
  * Created on 2019-02-27
  */
-package com.huchiwei.cordova.esptouch.esptouch;
+package org.apache.cordova.esptouch;
 
 /**
  * ESPThouchTaskResult
@@ -12,7 +12,7 @@ package com.huchiwei.cordova.esptouch.esptouch;
  * @author huchiwei
  * @version 1.0.0
  */
-public class ESPThouchTaskResult {
+public class ESPTouchTaskResult {
 
     private boolean isSuccess = false;       // 是否配网成功
     private String errMsg;                   // 错误消息
@@ -20,16 +20,16 @@ public class ESPThouchTaskResult {
     private String deviceBssid;              // 设备Mac地址
     private String deviceIp;                 // 设备IP
 
-    public ESPThouchTaskResult() {
+    public ESPTouchTaskResult() {
         this.isSuccess = true;
     }
 
-    public ESPThouchTaskResult(String errMsg) {
+    public ESPTouchTaskResult(String errMsg) {
         this.isSuccess = false;
         this.errMsg = errMsg;
     }
 
-    public ESPThouchTaskResult(boolean isSuccess, String deviceBssid, String deviceIp) {
+    public ESPTouchTaskResult(boolean isSuccess, String deviceBssid, String deviceIp) {
         this.isSuccess = isSuccess;
         this.deviceBssid = deviceBssid;
         this.deviceIp = deviceIp;
