@@ -36,7 +36,7 @@
         </config-file>
 
         <!-- 第三方库引入-->
-        <source-file src="src/android/android/lib/esptouch_v0.3.7.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/esptouch_v0.3.7.jar" target-dir="libs"/>
 
         <!-- Java 类定义-->
         <source-file src="src/android/ESPTouchTaskResult.java" target-dir="src/com/huchiwei/cordova/esptouch" />
