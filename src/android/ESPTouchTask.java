@@ -84,29 +84,29 @@ public class ESPTouchTask extends AsyncTask<byte[], Void, List<IEsptouchResult>>
     @Override
     protected void onPostExecute(List<IEsptouchResult> results) {
         if (null == results || results.size() <= 0) {
-            mCallback.handlerESPTouchTaskResult(new ESPThouchTaskResult("未接收到配网结果"));
+            mCallback.handlerESPTouchTaskResult(new ESPTouchTaskResult("未接收到配网结果"));
             return;
         }
 
         // 检查任务是否被取消且没有结果
         IEsptouchResult firstResult = results.get(0);
         if (firstResult.isCancelled()) {
-            mCallback.handlerESPTouchTaskResult(new ESPThouchTaskResult("配网任务已被取消"));
+            mCallback.handlerESPTouchTaskResult(new ESPTouchTaskResult("配网任务已被取消"));
             return;
         }
         if (!firstResult.isSuc()) {
-            mCallback.handlerESPTouchTaskResult(new ESPThouchTaskResult("配网失败，退出重试"));
+            mCallback.handlerESPTouchTaskResult(new ESPTouchTaskResult("配网失败，退出重试"));
             return;
         }
 
 
         // 回调成功结果
-        ESPThouchTaskResult espThouchTaskResult = new ESPThouchTaskResult();
-        espThouchTaskResult.setDeviceBssid(firstResult.getBssid().toUpperCase());
+        ESPTouchTaskResult ESPTouchTaskResult = new ESPTouchTaskResult();
+        ESPTouchTaskResult.setDeviceBssid(firstResult.getBssid().toUpperCase());
         if (null != firstResult.getInetAddress()) {
-            espThouchTaskResult.setDeviceIp(firstResult.getInetAddress().getHostAddress());
+            ESPTouchTaskResult.setDeviceIp(firstResult.getInetAddress().getHostAddress());
         }
-        mCallback.handlerESPTouchTaskResult(espThouchTaskResult);
+        mCallback.handlerESPTouchTaskResult(ESPTouchTaskResult);
     }
 
     /**

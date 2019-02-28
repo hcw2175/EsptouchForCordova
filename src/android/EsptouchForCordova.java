@@ -8,6 +8,7 @@ package org.apache.cordova.esptouch;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +41,7 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
     }
 
     @Override
-    public void handlerESPTouchTaskResult(ESPThouchTaskResult result) {
+    public void handlerESPTouchTaskResult(ESPTouchTaskResult result) {
         PluginResult pluginResult = null;
         if (result.isSuccess()) {
             pluginResult = new PluginResult(PluginResult.Status.OK, "{'deviceMac': " + result.getDeviceBssid() + ", 'deviceIp': " + result.getDeviceIp() + "}");
@@ -48,7 +49,7 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
             pluginResult = new PluginResult(PluginResult.Status.ERROR, "{'errMsg': " + result.getErrMsg() + "}");
         }
         pluginResult.setKeepCallback(true); // keep callback after this call
-        this.mCallbackContext.sendPluginResult(result);
+        this.mCallbackContext.sendPluginResult(pluginResult);
     }
 
     /**
@@ -56,19 +57,23 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
      *
      * @param args 前端传入参数列表
      */
-    private void start(JSONArray args) {
-        byte[] wifiName = ByteUtil.getBytesByString(args.getString(0));
-        byte[] wifiPassword = ByteUtil.getBytesByString(args.getString(1));
-        byte[] wifiMac = EspNetUtil.parseBssid2bytes(args.getString(2));
-        byte[] deviceCount = new String("1").getBytes();
-        byte[] broadcast = new String("1").getBytes();
+    private void start(JSONArray args, CallbackContext callbackContext) {
+        try {
+            byte[] wifiName = ByteUtil.getBytesByString(args.getString(0));
+            byte[] wifiPassword = ByteUtil.getBytesByString(args.getString(1));
+            byte[] wifiMac = EspNetUtil.parseBssid2bytes(args.getString(2));
+            byte[] deviceCount = new String("1").getBytes();
+            byte[] broadcast = new String("1").getBytes();
 
-        // 如果不为空，则先终止配网任务
-        if(mEspTouchTask != null) {
-            mEspTouchTask.cancelTask();
+            // 如果不为空，则先终止配网任务
+            if(mEspTouchTask != null) {
+                mEspTouchTask.cancelTask();
+            }
+            mEspTouchTask = new ESPTouchTask(this.cordova.getContext(), this);
+            mEspTouchTask.execute(wifiName, wifiMac, wifiPassword, deviceCount, broadcast);
+        } catch (JSONException exception) {
+            callbackContext.error("参数获取异常");
         }
-        mEspTouchTask = new ESPTouchTask(this.cordova.getContext(), this);
-        mEspTouchTask.execute(wifiName, wifiMac, wifiPassword, deviceCount, broadcast);
     }
 
     /**

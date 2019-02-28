@@ -7,7 +7,7 @@
 package org.apache.cordova.esptouch;
 
 /**
- * ESPThouchTaskResult
+ * ESPTouchTaskResult
  *
  * @author huchiwei
  * @version 1.0.0

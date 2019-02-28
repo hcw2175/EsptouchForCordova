@@ -17,5 +17,5 @@ public interface ESPTouchTaskCallback {
      * 回调处理配网结果
      * @param result 配网结果
      */
-    void handlerESPTouchTaskResult(ESPThouchTaskResult result);
+    void handlerESPTouchTaskResult(ESPTouchTaskResult result);
 }
