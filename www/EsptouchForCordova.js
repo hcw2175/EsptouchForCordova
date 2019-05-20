@@ -9,6 +9,6 @@ module.exports = {
         exec(successCallback, failCallback, "EsptouchForCordova", "start", [wifiName, wifiPassword, wifiMac]);
     },
     stop: function (successCallback, failCallback) {
-        exec(successCallback, failCallback, "esptouch", "stop", []);
+        exec(successCallback, failCallback, "EsptouchForCordova", "stop", []);
     }
 };

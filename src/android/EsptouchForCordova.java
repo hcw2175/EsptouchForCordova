@@ -37,16 +37,16 @@ public class EsptouchForCordova extends CordovaPlugin implements ESPTouchTaskCal
         } else if (action.equals("stop")) {
             this.stop(callbackContext);
         }
-        return false;
+        return true;
     }
 
     @Override
     public void handlerESPTouchTaskResult(ESPTouchTaskResult result) {
         PluginResult pluginResult = null;
         if (result.isSuccess()) {
-            pluginResult = new PluginResult(PluginResult.Status.OK, "{'deviceMac': " + result.getDeviceBssid() + ", 'deviceIp': " + result.getDeviceIp() + "}");
+            pluginResult = new PluginResult(PluginResult.Status.OK, "{\"deviceMac\":\"" + result.getDeviceBssid() + "\",\"deviceIp\":\"" + result.getDeviceIp() + "\"}");
         } else {
-            pluginResult = new PluginResult(PluginResult.Status.ERROR, "{'errMsg': " + result.getErrMsg() + "}");
+            pluginResult = new PluginResult(PluginResult.Status.ERROR, "{\"errMsg\": \"" + result.getErrMsg() + "\"}");
         }
         pluginResult.setKeepCallback(true); // keep callback after this call
         this.mCallbackContext.sendPluginResult(pluginResult);
