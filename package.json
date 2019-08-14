@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-smartesptouch",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Esptouch For Cordova",
   "cordova": {
     "id": "cordova-plugin-smartesptouch",
