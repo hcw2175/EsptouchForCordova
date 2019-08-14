@@ -6,6 +6,8 @@ An Esptouch library for Cordova.
 
 ## Installation
 
+The latest version is `0.0.7`
+
 ```
 cordova plugin add cordova-plugin-smartesptouch --save
 ```
