@@ -7,18 +7,20 @@
 package org.apache.cordova.esptouch;
 
 /**
- * ESPTouchTaskResult
- *
+ * 配网结果
  * @author huchiwei
  * @version 1.0.0
  */
 public class ESPTouchTaskResult {
 
-    private boolean isSuccess = false;       // 是否配网成功
-    private String errMsg;                   // 错误消息
 
-    private String deviceBssid;              // 设备Mac地址
-    private String deviceIp;                 // 设备IP
+    /** 错误消息  */
+    private String errMsg;
+
+    /** 设备Mac地址  */
+    private String deviceBssid;
+    /** 设备IP  */
+    private String deviceIp; 
 
     public ESPTouchTaskResult() {
         this.isSuccess = true;
